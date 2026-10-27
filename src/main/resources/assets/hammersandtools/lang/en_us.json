@@ -21,6 +21,6 @@
   "item.hammersandtools.diamond_hammer_t2": "Diamond Hammer T2",
   "item.hammersandtools.netherite_hammer_t2": "Netherite Hammer T2",
 
-  "key.hammerandtools.toggle_tool_mode": "Toggle Tool Mode",
-  "key.categories.hammerandtools": "HammerAndTools"
+  "key.hammersandtools.toggle_tool_mode": "Toggle Tool Mode",
+  "key.categories.hammersandtools": "Hammers & Tools"
 }

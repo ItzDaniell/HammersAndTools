@@ -63,6 +63,12 @@ public class HammerItem extends DiggerItem {
 
         // La minería de área solo se procesa en el servidor y si quien mina es un ServerPlayer
         if (!level.isClientSide() && entityLiving instanceof ServerPlayer player && !IS_AREA_MINING.get()) {
+            // Comprobamos si el jugador tiene activo el modo de herramienta con la tecla G.
+            // Si está desactivado, el martillo mina en modo normal 1x1.
+            if (!com.example.hammersandtools.ToolMode.isActive(player.getUUID())) {
+                return result;
+            }
+
             // Solo romper en área si el bloque objetivo es apto para ser minado por esta herramienta
             if (state.getDestroySpeed(level, pos) > 0 && isCorrectToolForDrops(state)) {
                 executeAreaMining(stack, (ServerLevel) level, pos, player);
@@ -102,12 +108,9 @@ public class HammerItem extends DiggerItem {
                     continue;
                 }
 
-                // Simula rotura legítima respetando permisos de servidor y protecciones
-                boolean canDestroy = player.gameMode.destroyBlock(targetPos);
-                if (canDestroy) {
-                    // Consumir 1 punto de durabilidad por cada bloque adicional minado
-                    stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(EquipmentSlot.MAINHAND));
-                }
+                // destroyBlock ejecuta la rotura de bloque simulando la acción del jugador,
+                // respetando protecciones y descontando automáticamente 1 punto de durabilidad a la herramienta.
+                player.gameMode.destroyBlock(targetPos);
             }
         } finally {
             IS_AREA_MINING.set(false);
