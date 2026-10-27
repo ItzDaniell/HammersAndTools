@@ -1,0 +1,26 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "RHC",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "R": {
+      "item": "hammersandtools:reinforced_core"
+    },
+    "H": {
+      "item": "hammersandtools:netherite_hammer"
+    },
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:netherite_hammer_t2",
+    "count": 1
+  }
+}

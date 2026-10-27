@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BNB",
+    "NAN",
+    "BNB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:diamond_block"
+    },
+    "N": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "A": {
+      "item": "hammersandtools:advanced_core"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:superior_core",
+    "count": 1
+  }
+}

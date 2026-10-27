@@ -1,0 +1,26 @@
+{
+  "itemGroup.hammersandtools": "Hammers & Tools",
+
+  "item.hammersandtools.mining_core": "Núcleo de minería básico (NV1)",
+  "item.hammersandtools.reinforced_core": "Núcleo de minería reforzado (NV2)",
+  "item.hammersandtools.advanced_core": "Núcleo de minería avanzado (NV3)",
+  "item.hammersandtools.superior_core": "Núcleo de minería superior (NV4)",
+
+  "item.hammersandtools.tree_core": "Núcleo Talador",
+  "item.hammersandtools.excavation_core": "Núcleo Excavador",
+
+  "item.hammersandtools.stone_hammer": "Martillo de piedra",
+  "item.hammersandtools.iron_hammer": "Martillo de hierro",
+  "item.hammersandtools.gold_hammer": "Martillo de oro",
+  "item.hammersandtools.diamond_hammer": "Martillo de diamante",
+  "item.hammersandtools.netherite_hammer": "Martillo de netherita",
+
+  "item.hammersandtools.stone_hammer_t2": "Martillo de piedra NV2",
+  "item.hammersandtools.iron_hammer_t2": "Martillo de hierro NV2",
+  "item.hammersandtools.gold_hammer_t2": "Martillo de oro NV2",
+  "item.hammersandtools.diamond_hammer_t2": "Martillo de diamante NV2",
+  "item.hammersandtools.netherite_hammer_t2": "Martillo de netherita NV2",
+
+  "key.hammerandtools.toggle_tool_mode": "Alternar modo de herramienta",
+  "key.categories.hammerandtools": "HammerAndTools"
+}

@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RSR",
+    "SMS",
+    "RSR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "minecraft:obsidian"
+    },
+    "M": {
+      "item": "hammersandtools:mining_core"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:reinforced_core",
+    "count": 1
+  }
+}

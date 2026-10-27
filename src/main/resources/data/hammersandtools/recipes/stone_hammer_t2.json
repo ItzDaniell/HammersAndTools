@@ -1,0 +1,26 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "RHC",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:smooth_stone"
+    },
+    "R": {
+      "item": "hammersandtools:reinforced_core"
+    },
+    "H": {
+      "item": "hammersandtools:stone_hammer"
+    },
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:stone_hammer_t2",
+    "count": 1
+  }
+}

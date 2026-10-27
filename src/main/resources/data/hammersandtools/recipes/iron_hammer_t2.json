@@ -1,0 +1,26 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "RHC",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:iron_block"
+    },
+    "R": {
+      "item": "hammersandtools:reinforced_core"
+    },
+    "H": {
+      "item": "hammersandtools:iron_hammer"
+    },
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:iron_hammer_t2",
+    "count": 1
+  }
+}

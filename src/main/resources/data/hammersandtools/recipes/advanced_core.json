@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EDE",
+    "DRD",
+    "EDE"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "R": {
+      "item": "hammersandtools:reinforced_core"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:advanced_core",
+    "count": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "itemGroup.hammersandtools": "Hammers & Tools",
+
+  "item.hammersandtools.mining_core": "Basic Mining Core (T1)",
+  "item.hammersandtools.reinforced_core": "Reinforced Mining Core (T2)",
+  "item.hammersandtools.advanced_core": "Advanced Mining Core (T3)",
+  "item.hammersandtools.superior_core": "Superior Mining Core (T4)",
+
+  "item.hammersandtools.tree_core": "Tree Felling Core",
+  "item.hammersandtools.excavation_core": "Excavation Core",
+
+  "item.hammersandtools.stone_hammer": "Stone Hammer",
+  "item.hammersandtools.iron_hammer": "Iron Hammer",
+  "item.hammersandtools.gold_hammer": "Golden Hammer",
+  "item.hammersandtools.diamond_hammer": "Diamond Hammer",
+  "item.hammersandtools.netherite_hammer": "Netherite Hammer",
+
+  "item.hammersandtools.stone_hammer_t2": "Stone Hammer T2",
+  "item.hammersandtools.iron_hammer_t2": "Iron Hammer T2",
+  "item.hammersandtools.gold_hammer_t2": "Golden Hammer T2",
+  "item.hammersandtools.diamond_hammer_t2": "Diamond Hammer T2",
+  "item.hammersandtools.netherite_hammer_t2": "Netherite Hammer T2",
+
+  "key.hammerandtools.toggle_tool_mode": "Toggle Tool Mode",
+  "key.categories.hammerandtools": "HammerAndTools"
+}
