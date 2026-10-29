@@ -5,20 +5,19 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,8 @@ import java.util.List;
 /**
  * Clase base para todos los martillos del mod.
  * Extiende DiggerItem usando la etiqueta BlockTags.MINEABLE_WITH_PICKAXE
- * para comportarse de forma idéntica a un pico vanilla respecto a qué bloques puede minar.
+ * para comportarse de forma idéntica a un pico vanilla respecto a qué bloques
+ * puede minar.
  */
 public class HammerItem extends DiggerItem {
 
@@ -53,6 +53,27 @@ public class HammerItem extends DiggerItem {
     }
 
     /**
+     * Permite explícitamente aplicar encantamientos compatibles con herramientas,
+     * picos y daño a objetos (como Irrompibilidad / Unbreaking y Reparación / Mending)
+     * en el yunque o mesa de encantamientos.
+     */
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == Enchantments.UNBREAKING || enchantment == Enchantments.MENDING) {
+            return true;
+        }
+        if (enchantment.category == EnchantmentCategory.DIGGER || enchantment.category == EnchantmentCategory.BREAKABLE) {
+            return true;
+        }
+        return super.canApplyAtEnchantingTable(stack, enchantment);
+    }
+
+    @Override
+    public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+        return true;
+    }
+
+    /**
      * Se ejecuta cuando un bloque es roto por el jugador usando este martillo.
      * Aquí se gestiona la minería de bloques adicionales en el servidor.
      */
@@ -61,7 +82,8 @@ public class HammerItem extends DiggerItem {
         // Ejecución estándar de durabilidad para el bloque objetivo principal
         boolean result = super.mineBlock(stack, level, state, pos, entityLiving);
 
-        // La minería de área solo se procesa en el servidor y si quien mina es un ServerPlayer
+        // La minería de área solo se procesa en el servidor y si quien mina es un
+        // ServerPlayer
         if (!level.isClientSide() && entityLiving instanceof ServerPlayer player && !IS_AREA_MINING.get()) {
             // Comprobamos si el jugador tiene activo el modo de herramienta con la tecla G.
             // Si está desactivado, el martillo mina en modo normal 1x1.
@@ -69,7 +91,8 @@ public class HammerItem extends DiggerItem {
                 return result;
             }
 
-            // Solo romper en área si el bloque objetivo es apto para ser minado por esta herramienta
+            // Solo romper en área si el bloque objetivo es apto para ser minado por esta
+            // herramienta
             if (state.getDestroySpeed(level, pos) > 0 && isCorrectToolForDrops(state)) {
                 executeAreaMining(stack, (ServerLevel) level, pos, player);
             }
@@ -79,7 +102,8 @@ public class HammerItem extends DiggerItem {
     }
 
     /**
-     * Realiza el minado en área calculando la orientación de la cara que el jugador golpeó.
+     * Realiza el minado en área calculando la orientación de la cara que el jugador
+     * golpeó.
      */
     private void executeAreaMining(ItemStack stack, ServerLevel level, BlockPos originPos, ServerPlayer player) {
         IS_AREA_MINING.set(true);
@@ -88,7 +112,8 @@ public class HammerItem extends DiggerItem {
             List<BlockPos> blocksToBreak = calculateAreaPositions(originPos, hitFace, this.miningLevel);
 
             for (BlockPos targetPos : blocksToBreak) {
-                // Si el martillo se destruye o se queda sin durabilidad restante, detenemos la minería de área
+                // Si el martillo se destruye o se queda sin durabilidad restante, detenemos la
+                // minería de área
                 if (stack.isEmpty() || (stack.getMaxDamage() > 0 && stack.getDamageValue() >= stack.getMaxDamage())) {
                     break;
                 }
@@ -102,14 +127,17 @@ public class HammerItem extends DiggerItem {
 
                 // Verificaciones de seguridad:
                 // 1. Dureza > 0 (evita romper bedrock u objetos indestructibles)
-                // 2. Comprueba que el martillo sea herramienta válida para recolectar drops de este bloque
+                // 2. Comprueba que el martillo sea herramienta válida para recolectar drops de
+                // este bloque
                 // 3. Verifica que el bloque no sea aire
-                if (targetState.isAir() || targetState.getDestroySpeed(level, targetPos) < 0 || !isCorrectToolForDrops(targetState)) {
+                if (targetState.isAir() || targetState.getDestroySpeed(level, targetPos) < 0
+                        || !isCorrectToolForDrops(targetState)) {
                     continue;
                 }
 
                 // destroyBlock ejecuta la rotura de bloque simulando la acción del jugador,
-                // respetando protecciones y descontando automáticamente 1 punto de durabilidad a la herramienta.
+                // respetando protecciones y descontando automáticamente 1 punto de durabilidad
+                // a la herramienta.
                 player.gameMode.destroyBlock(targetPos);
             }
         } finally {
@@ -118,7 +146,8 @@ public class HammerItem extends DiggerItem {
     }
 
     /**
-     * Determina la cara del bloque a la que el jugador estaba apuntando mediante un trazado de rayos.
+     * Determina la cara del bloque a la que el jugador estaba apuntando mediante un
+     * trazado de rayos.
      */
     private static Direction getTargetDirection(ServerPlayer player) {
         double reach = player.getBlockReach();
@@ -131,14 +160,14 @@ public class HammerItem extends DiggerItem {
                 endPos,
                 ClipContext.Block.COLLIDER,
                 ClipContext.Fluid.NONE,
-                player
-        ));
+                player));
 
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             return hitResult.getDirection();
         }
 
-        // Si no detecta una cara directamente, deducir la dirección según la inclinación de la vista del jugador
+        // Si no detecta una cara directamente, deducir la dirección según la
+        // inclinación de la vista del jugador
         return Direction.getNearest(lookVec.x, lookVec.y, lookVec.z).getOpposite();
     }
 
@@ -159,7 +188,8 @@ public class HammerItem extends DiggerItem {
             BlockPos layerOrigin = origin.relative(depthDirection, depth);
 
             if (axis == Direction.Axis.Y) {
-                // Minando hacia arriba o hacia abajo: el área 3x3 está en el plano XZ (suelo/techo)
+                // Minando hacia arriba o hacia abajo: el área 3x3 está en el plano XZ
+                // (suelo/techo)
                 for (int x = -1; x <= 1; x++) {
                     for (int z = -1; z <= 1; z++) {
                         positions.add(layerOrigin.offset(x, 0, z));
