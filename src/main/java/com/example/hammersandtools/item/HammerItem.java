@@ -175,20 +175,43 @@ public class HammerItem extends DiggerItem {
 
     /**
      * Calcula la lista de posiciones de bloques que deben ser minados.
-     * Nivel 1: plano 3x3 perpendicular a la cara impactada (radio 1, profundidad 1 -> 9 bloques).
-     * Nivel 2: cubo 3x3x3 adentrándose en el túnel (radio 1, profundidad 3 -> 27 bloques).
-     * Nivel 3: plano 5x5 perpendicular a la cara impactada (radio 2, profundidad 1 -> 25 bloques).
-     * Nivel 4: cubo 5x5x5 adentrándose en el túnel (radio 2, profundidad 5 -> 125 bloques).
+     * Nivel 1: plano 3x3 centrado en el bloque golpeado (radio 1, profundidad 1 -> 9 bloques).
+     * Nivel 2: cubo 3x3x3 centrado adentrándose en el túnel (radio 1, profundidad 3 -> 27 bloques).
+     * Nivel 3: plano 5x5 con el bloque objetivo posicionado 1 bloque abajo del centro (profundidad 1 -> 25 bloques).
+     * Nivel 4: cubo 5x5x5 con el bloque objetivo posicionado 1 bloque abajo del centro (profundidad 5 -> 125 bloques).
      */
     public static List<BlockPos> calculateAreaPositions(BlockPos origin, Direction hitFace, int level) {
         List<BlockPos> positions = new ArrayList<>();
 
-        int radius = (level >= 3) ? 2 : 1;
         int depthCount = 1;
         if (level == 2) {
             depthCount = 3;
         } else if (level >= 4) {
             depthCount = 5;
+        }
+
+        // Definición de rangos según el nivel:
+        // En 3x3 (niveles 1 y 2): centrado simétrico (-1 a +1)
+        // En 5x5 (niveles 3 y 4): horizontalmente simétrico (-2 a +2).
+        // Verticalmente (eje Y): 1 bloque hacia abajo (-1) y 3 bloques hacia arriba (+3) para un total de 5 bloques:
+        // +3: [0 0 0 0 0]
+        // +2: [0 0 0 0 0]
+        // +1: [0 0 0 0 0]
+        //  0: [0 0 X 0 0] <- Bloque golpeado (X)
+        // -1: [0 0 0 0 0]
+        int minH, maxH;
+        int minY, maxY;
+
+        if (level >= 3) {
+            minH = -2;
+            maxH = 2;
+            minY = -1;
+            maxY = 3;
+        } else {
+            minH = -1;
+            maxH = 1;
+            minY = -1;
+            maxY = 1;
         }
 
         Direction depthDirection = hitFace.getOpposite();
@@ -198,23 +221,23 @@ public class HammerItem extends DiggerItem {
             BlockPos layerOrigin = origin.relative(depthDirection, depth);
 
             if (axis == Direction.Axis.Y) {
-                // Minando hacia arriba o hacia abajo: el área está en el plano XZ (suelo/techo)
-                for (int x = -radius; x <= radius; x++) {
-                    for (int z = -radius; z <= radius; z++) {
+                // Minando hacia arriba o hacia abajo: ambos ejes son horizontales (XZ), por lo que se centra en el plano
+                for (int x = minH; x <= maxH; x++) {
+                    for (int z = minH; z <= maxH; z++) {
                         positions.add(layerOrigin.offset(x, 0, z));
                     }
                 }
             } else if (axis == Direction.Axis.X) {
-                // Minando hacia el Este o Oeste: el área está en el plano YZ
-                for (int y = -radius; y <= radius; y++) {
-                    for (int z = -radius; z <= radius; z++) {
+                // Minando pared en eje X: el eje horizontal es Z y el vertical es Y
+                for (int y = minY; y <= maxY; y++) {
+                    for (int z = minH; z <= maxH; z++) {
                         positions.add(layerOrigin.offset(0, y, z));
                     }
                 }
             } else if (axis == Direction.Axis.Z) {
-                // Minando hacia el Norte o Sur: el área está en el plano XY
-                for (int x = -radius; x <= radius; x++) {
-                    for (int y = -radius; y <= radius; y++) {
+                // Minando pared en eje Z: el eje horizontal es X y el vertical es Y
+                for (int x = minH; x <= maxH; x++) {
+                    for (int y = minY; y <= maxY; y++) {
                         positions.add(layerOrigin.offset(x, y, 0));
                     }
                 }
