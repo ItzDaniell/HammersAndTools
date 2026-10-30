@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stone"
+    },
+    "C": {
+      "item": "hammersandtools:superior_core"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:stone_hammer_t4",
+    "count": 1
+  }
+}

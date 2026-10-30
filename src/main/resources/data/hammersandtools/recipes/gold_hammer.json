@@ -1,19 +1,19 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "MMM",
-    "MCM",
+    "BBB",
+    "BCB",
     " S "
   ],
   "key": {
-    "M": {
-      "item": "minecraft:gold_ingot"
+    "B": {
+      "item": "minecraft:gold_block"
     },
     "C": {
       "item": "hammersandtools:mining_core"
     },
     "S": {
-      "item": "minecraft:stick"
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

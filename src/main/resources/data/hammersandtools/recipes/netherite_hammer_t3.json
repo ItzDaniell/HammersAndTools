@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:netherite_block"
+    },
+    "C": {
+      "item": "hammersandtools:advanced_core"
+    },
+    "S": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:netherite_hammer_t3",
+    "count": 1
+  }
+}

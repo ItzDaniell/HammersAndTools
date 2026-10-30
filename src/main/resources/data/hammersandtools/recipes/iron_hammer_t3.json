@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "hammersandtools:advanced_core"
+    },
+    "S": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:iron_hammer_t3",
+    "count": 1
+  }
+}

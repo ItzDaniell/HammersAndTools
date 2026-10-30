@@ -1,22 +1,19 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " M ",
-    "RHC",
-    " M "
+    "BBB",
+    "BCB",
+    " S "
   ],
   "key": {
-    "M": {
-      "item": "minecraft:smooth_stone"
-    },
-    "R": {
-      "item": "hammersandtools:reinforced_core"
-    },
-    "H": {
-      "item": "hammersandtools:stone_hammer"
+    "B": {
+      "item": "minecraft:stone"
     },
     "C": {
-      "item": "minecraft:crying_obsidian"
+      "item": "hammersandtools:reinforced_core"
+    },
+    "S": {
+      "item": "minecraft:stick"
     }
   },
   "result": {

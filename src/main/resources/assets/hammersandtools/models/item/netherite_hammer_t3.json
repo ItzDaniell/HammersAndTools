@@ -1,0 +1,6 @@
+﻿{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "hammersandtools:item/netherite_hammer_t3"
+  }
+}

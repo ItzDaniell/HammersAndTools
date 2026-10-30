@@ -1,22 +1,19 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " M ",
-    "RHC",
-    " M "
+    "BBB",
+    "BCB",
+    " S "
   ],
   "key": {
-    "M": {
+    "B": {
       "item": "minecraft:gold_block"
     },
-    "R": {
+    "C": {
       "item": "hammersandtools:reinforced_core"
     },
-    "H": {
-      "item": "hammersandtools:gold_hammer"
-    },
-    "C": {
-      "item": "minecraft:crying_obsidian"
+    "S": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

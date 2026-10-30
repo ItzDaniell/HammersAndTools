@@ -1,22 +1,19 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " N ",
-    "CHC",
+    "BBB",
+    "BCB",
     " S "
   ],
   "key": {
-    "N": {
-      "item": "minecraft:netherite_ingot"
-    },
-    "H": {
-      "item": "hammersandtools:diamond_hammer"
+    "B": {
+      "item": "minecraft:netherite_block"
     },
     "C": {
       "item": "hammersandtools:mining_core"
     },
     "S": {
-      "item": "minecraft:netherite_scrap"
+      "item": "minecraft:netherite_ingot"
     }
   },
   "result": {

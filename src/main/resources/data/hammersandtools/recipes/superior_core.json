@@ -1,19 +1,25 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BNB",
-    "NAN",
-    "BNB"
+    "NDN",
+    "QAQ",
+    "ENE"
   ],
   "key": {
-    "B": {
+    "N": {
+      "item": "minecraft:netherite_block"
+    },
+    "D": {
       "item": "minecraft:diamond_block"
     },
-    "N": {
-      "item": "minecraft:netherite_scrap"
+    "Q": {
+      "item": "minecraft:quartz_block"
     },
     "A": {
       "item": "hammersandtools:advanced_core"
+    },
+    "E": {
+      "item": "minecraft:emerald_block"
     }
   },
   "result": {

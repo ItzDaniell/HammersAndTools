@@ -1,20 +1,28 @@
-
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IRI",
+    "ICI",
     "RDR",
-    "IRI"
+    "LGL"
   ],
   "key": {
     "I": {
       "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
     },
     "R": {
       "item": "minecraft:redstone"
     },
     "D": {
       "item": "minecraft:diamond"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {

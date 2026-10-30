@@ -1,19 +1,19 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "MMM",
-    "MCM",
+    "BBB",
+    "BCB",
     " S "
   ],
   "key": {
-    "M": {
-      "item": "minecraft:diamond"
+    "B": {
+      "item": "minecraft:diamond_block"
     },
     "C": {
       "item": "hammersandtools:mining_core"
     },
     "S": {
-      "item": "minecraft:stick"
+      "item": "minecraft:diamond"
     }
   },
   "result": {

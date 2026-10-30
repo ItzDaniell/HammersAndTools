@@ -1,22 +1,19 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " M ",
-    "RHC",
-    " M "
+    "BBB",
+    "BCB",
+    " S "
   ],
   "key": {
-    "M": {
-      "item": "minecraft:netherite_ingot"
-    },
-    "R": {
-      "item": "hammersandtools:reinforced_core"
-    },
-    "H": {
-      "item": "hammersandtools:netherite_hammer"
+    "B": {
+      "item": "minecraft:netherite_block"
     },
     "C": {
-      "item": "minecraft:crying_obsidian"
+      "item": "hammersandtools:reinforced_core"
+    },
+    "S": {
+      "item": "minecraft:netherite_ingot"
     }
   },
   "result": {

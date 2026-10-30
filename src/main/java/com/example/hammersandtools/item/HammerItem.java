@@ -32,8 +32,10 @@ public class HammerItem extends DiggerItem {
 
     /**
      * Nivel del martillo:
-     * 1 = Minería de área plana 3x3 orientada a la cara minada.
-     * 2 = Minería volumétrica 3x3x3 con profundidad coherente.
+     * 1 = Minería de área plana 3x3 orientada a la cara minada (radio 1, profundidad 1).
+     * 2 = Minería volumétrica 3x3x3 con profundidad coherente (radio 1, profundidad 3).
+     * 3 = Minería de área plana 5x5 orientada a la cara minada (radio 2, profundidad 1).
+     * 4 = Minería volumétrica 5x5x5 con profundidad coherente (radio 2, profundidad 5).
      */
     private final int miningLevel;
 
@@ -173,39 +175,46 @@ public class HammerItem extends DiggerItem {
 
     /**
      * Calcula la lista de posiciones de bloques que deben ser minados.
-     * Nivel 1: plano 3x3 perpendicular a la cara impactada.
-     * Nivel 2: cubo 3x3x3 adentrándose en el túnel.
+     * Nivel 1: plano 3x3 perpendicular a la cara impactada (radio 1, profundidad 1 -> 9 bloques).
+     * Nivel 2: cubo 3x3x3 adentrándose en el túnel (radio 1, profundidad 3 -> 27 bloques).
+     * Nivel 3: plano 5x5 perpendicular a la cara impactada (radio 2, profundidad 1 -> 25 bloques).
+     * Nivel 4: cubo 5x5x5 adentrándose en el túnel (radio 2, profundidad 5 -> 125 bloques).
      */
     public static List<BlockPos> calculateAreaPositions(BlockPos origin, Direction hitFace, int level) {
         List<BlockPos> positions = new ArrayList<>();
 
-        int depthCount = (level >= 2) ? 3 : 1;
-        Direction depthDirection = hitFace.getOpposite();
+        int radius = (level >= 3) ? 2 : 1;
+        int depthCount = 1;
+        if (level == 2) {
+            depthCount = 3;
+        } else if (level >= 4) {
+            depthCount = 5;
+        }
 
+        Direction depthDirection = hitFace.getOpposite();
         Direction.Axis axis = hitFace.getAxis();
 
         for (int depth = 0; depth < depthCount; depth++) {
             BlockPos layerOrigin = origin.relative(depthDirection, depth);
 
             if (axis == Direction.Axis.Y) {
-                // Minando hacia arriba o hacia abajo: el área 3x3 está en el plano XZ
-                // (suelo/techo)
-                for (int x = -1; x <= 1; x++) {
-                    for (int z = -1; z <= 1; z++) {
+                // Minando hacia arriba o hacia abajo: el área está en el plano XZ (suelo/techo)
+                for (int x = -radius; x <= radius; x++) {
+                    for (int z = -radius; z <= radius; z++) {
                         positions.add(layerOrigin.offset(x, 0, z));
                     }
                 }
             } else if (axis == Direction.Axis.X) {
-                // Minando hacia el Este o Oeste: el área 3x3 está en el plano YZ
-                for (int y = -1; y <= 1; y++) {
-                    for (int z = -1; z <= 1; z++) {
+                // Minando hacia el Este o Oeste: el área está en el plano YZ
+                for (int y = -radius; y <= radius; y++) {
+                    for (int z = -radius; z <= radius; z++) {
                         positions.add(layerOrigin.offset(0, y, z));
                     }
                 }
             } else if (axis == Direction.Axis.Z) {
-                // Minando hacia el Norte o Sur: el área 3x3 está en el plano XY
-                for (int x = -1; x <= 1; x++) {
-                    for (int y = -1; y <= 1; y++) {
+                // Minando hacia el Norte o Sur: el área está en el plano XY
+                for (int x = -radius; x <= radius; x++) {
+                    for (int y = -radius; y <= radius; y++) {
                         positions.add(layerOrigin.offset(x, y, 0));
                     }
                 }

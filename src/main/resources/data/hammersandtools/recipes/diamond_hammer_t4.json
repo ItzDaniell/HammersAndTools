@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:diamond_block"
+    },
+    "C": {
+      "item": "hammersandtools:superior_core"
+    },
+    "S": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:diamond_hammer_t4",
+    "count": 1
+  }
+}

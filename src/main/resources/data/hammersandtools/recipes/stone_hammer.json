@@ -1,13 +1,13 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "MMM",
-    "MCM",
+    "BBB",
+    "BCB",
     " S "
   ],
   "key": {
-    "M": {
-      "item": "minecraft:cobblestone"
+    "B": {
+      "item": "minecraft:stone"
     },
     "C": {
       "item": "hammersandtools:mining_core"

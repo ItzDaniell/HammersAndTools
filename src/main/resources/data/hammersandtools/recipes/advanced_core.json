@@ -1,19 +1,25 @@
 ﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "EDE",
-    "DRD",
-    "EDE"
+    "DQD",
+    "ERE",
+    "QGQ"
   ],
   "key": {
-    "E": {
-      "item": "minecraft:ender_pearl"
-    },
     "D": {
-      "item": "minecraft:diamond"
+      "item": "minecraft:diamond_block"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
+    },
+    "E": {
+      "item": "minecraft:emerald_block"
     },
     "R": {
       "item": "hammersandtools:reinforced_core"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
     }
   },
   "result": {

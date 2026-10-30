@@ -35,7 +35,7 @@ function Create-CoreTexture($name, $outerColor, $innerColor, $accentColor) {
     $bmp.Dispose()
 }
 
-function Create-HammerTexture($name, $headColor, $headHighlight, $isT2) {
+function Create-HammerTexture($name, $headColor, $headHighlight, $tierLevel) {
     $bmp = New-Object System.Drawing.Bitmap 16, 16
     for ($x = 0; $x -lt 16; $x++) {
         for ($y = 0; $y -lt 16; $y++) {
@@ -62,15 +62,44 @@ function Create-HammerTexture($name, $headColor, $headHighlight, $isT2) {
     for ($x = 8; $x -le 12; $x++) {
         $bmp.SetPixel($x, 2, $headHighlight)
     }
-    # Si es T2, agregamos refuerzos dorados/místicos en los laterales
-    if ($isT2) {
-        $goldPlate = [System.Drawing.Color]::FromArgb(255, 255, 215, 0)
-        $bmp.SetPixel(6, 3, $goldPlate)
-        $bmp.SetPixel(6, 4, $goldPlate)
-        $bmp.SetPixel(6, 5, $goldPlate)
-        $bmp.SetPixel(14, 3, $goldPlate)
-        $bmp.SetPixel(14, 4, $goldPlate)
-        $bmp.SetPixel(14, 5, $goldPlate)
+
+    # Decoraciones por nivel:
+    if ($tierLevel -eq 2) {
+        # T2: Refuerzos dorados
+        $plate = [System.Drawing.Color]::FromArgb(255, 255, 215, 0)
+        $bmp.SetPixel(6, 3, $plate)
+        $bmp.SetPixel(6, 4, $plate)
+        $bmp.SetPixel(6, 5, $plate)
+        $bmp.SetPixel(14, 3, $plate)
+        $bmp.SetPixel(14, 4, $plate)
+        $bmp.SetPixel(14, 5, $plate)
+    } elseif ($tierLevel -eq 3) {
+        # T3: Refuerzos de diamante / cian místico
+        $plate = [System.Drawing.Color]::FromArgb(255, 0, 255, 240)
+        $bmp.SetPixel(6, 2, $plate)
+        $bmp.SetPixel(6, 3, $plate)
+        $bmp.SetPixel(6, 4, $plate)
+        $bmp.SetPixel(6, 5, $plate)
+        $bmp.SetPixel(14, 2, $plate)
+        $bmp.SetPixel(14, 3, $plate)
+        $bmp.SetPixel(14, 4, $plate)
+        $bmp.SetPixel(14, 5, $plate)
+        $bmp.SetPixel(10, 4, $plate) # gema central
+    } elseif ($tierLevel -eq 4) {
+        # T4: Refuerzos de amatista / netherite púrpura cósmico
+        $plate = [System.Drawing.Color]::FromArgb(255, 220, 80, 255)
+        $goldBorder = [System.Drawing.Color]::FromArgb(255, 255, 215, 0)
+        $bmp.SetPixel(6, 2, $goldBorder)
+        $bmp.SetPixel(6, 3, $plate)
+        $bmp.SetPixel(6, 4, $plate)
+        $bmp.SetPixel(6, 5, $goldBorder)
+        $bmp.SetPixel(14, 2, $goldBorder)
+        $bmp.SetPixel(14, 3, $plate)
+        $bmp.SetPixel(14, 4, $plate)
+        $bmp.SetPixel(14, 5, $goldBorder)
+        $bmp.SetPixel(9, 4, $plate)
+        $bmp.SetPixel(10, 4, [System.Drawing.Color]::White)
+        $bmp.SetPixel(11, 4, $plate)
     }
 
     $path = Join-Path $destDir "$name.png"
@@ -87,17 +116,31 @@ Create-CoreTexture "tree_core" ([System.Drawing.Color]::FromArgb(255, 139, 90, 4
 Create-CoreTexture "excavation_core" ([System.Drawing.Color]::FromArgb(255, 160, 82, 45)) ([System.Drawing.Color]::FromArgb(255, 210, 180, 140)) ([System.Drawing.Color]::FromArgb(255, 245, 222, 179))
 
 # 2. Martillos T1
-Create-HammerTexture "stone_hammer" ([System.Drawing.Color]::FromArgb(255, 128, 128, 128)) ([System.Drawing.Color]::FromArgb(255, 180, 180, 180)) $false
-Create-HammerTexture "iron_hammer" ([System.Drawing.Color]::FromArgb(255, 215, 215, 215)) ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)) $false
-Create-HammerTexture "gold_hammer" ([System.Drawing.Color]::FromArgb(255, 250, 215, 40)) ([System.Drawing.Color]::FromArgb(255, 255, 245, 150)) $false
-Create-HammerTexture "diamond_hammer" ([System.Drawing.Color]::FromArgb(255, 45, 220, 210)) ([System.Drawing.Color]::FromArgb(255, 170, 250, 250)) $false
-Create-HammerTexture "netherite_hammer" ([System.Drawing.Color]::FromArgb(255, 75, 65, 70)) ([System.Drawing.Color]::FromArgb(255, 120, 110, 115)) $false
+Create-HammerTexture "stone_hammer" ([System.Drawing.Color]::FromArgb(255, 128, 128, 128)) ([System.Drawing.Color]::FromArgb(255, 180, 180, 180)) 1
+Create-HammerTexture "iron_hammer" ([System.Drawing.Color]::FromArgb(255, 215, 215, 215)) ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)) 1
+Create-HammerTexture "gold_hammer" ([System.Drawing.Color]::FromArgb(255, 250, 215, 40)) ([System.Drawing.Color]::FromArgb(255, 255, 245, 150)) 1
+Create-HammerTexture "diamond_hammer" ([System.Drawing.Color]::FromArgb(255, 45, 220, 210)) ([System.Drawing.Color]::FromArgb(255, 170, 250, 250)) 1
+Create-HammerTexture "netherite_hammer" ([System.Drawing.Color]::FromArgb(255, 75, 65, 70)) ([System.Drawing.Color]::FromArgb(255, 120, 110, 115)) 1
 
 # 3. Martillos T2
-Create-HammerTexture "stone_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 128, 128, 128)) ([System.Drawing.Color]::FromArgb(255, 180, 180, 180)) $true
-Create-HammerTexture "iron_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 215, 215, 215)) ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)) $true
-Create-HammerTexture "gold_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 250, 215, 40)) ([System.Drawing.Color]::FromArgb(255, 255, 245, 150)) $true
-Create-HammerTexture "diamond_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 45, 220, 210)) ([System.Drawing.Color]::FromArgb(255, 170, 250, 250)) $true
-Create-HammerTexture "netherite_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 75, 65, 70)) ([System.Drawing.Color]::FromArgb(255, 120, 110, 115)) $true
+Create-HammerTexture "stone_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 128, 128, 128)) ([System.Drawing.Color]::FromArgb(255, 180, 180, 180)) 2
+Create-HammerTexture "iron_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 215, 215, 215)) ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)) 2
+Create-HammerTexture "gold_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 250, 215, 40)) ([System.Drawing.Color]::FromArgb(255, 255, 245, 150)) 2
+Create-HammerTexture "diamond_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 45, 220, 210)) ([System.Drawing.Color]::FromArgb(255, 170, 250, 250)) 2
+Create-HammerTexture "netherite_hammer_t2" ([System.Drawing.Color]::FromArgb(255, 75, 65, 70)) ([System.Drawing.Color]::FromArgb(255, 120, 110, 115)) 2
+
+# 4. Martillos T3 (5x5)
+Create-HammerTexture "stone_hammer_t3" ([System.Drawing.Color]::FromArgb(255, 128, 128, 128)) ([System.Drawing.Color]::FromArgb(255, 180, 180, 180)) 3
+Create-HammerTexture "iron_hammer_t3" ([System.Drawing.Color]::FromArgb(255, 215, 215, 215)) ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)) 3
+Create-HammerTexture "gold_hammer_t3" ([System.Drawing.Color]::FromArgb(255, 250, 215, 40)) ([System.Drawing.Color]::FromArgb(255, 255, 245, 150)) 3
+Create-HammerTexture "diamond_hammer_t3" ([System.Drawing.Color]::FromArgb(255, 45, 220, 210)) ([System.Drawing.Color]::FromArgb(255, 170, 250, 250)) 3
+Create-HammerTexture "netherite_hammer_t3" ([System.Drawing.Color]::FromArgb(255, 75, 65, 70)) ([System.Drawing.Color]::FromArgb(255, 120, 110, 115)) 3
+
+# 5. Martillos T4 (5x5x5)
+Create-HammerTexture "stone_hammer_t4" ([System.Drawing.Color]::FromArgb(255, 128, 128, 128)) ([System.Drawing.Color]::FromArgb(255, 180, 180, 180)) 4
+Create-HammerTexture "iron_hammer_t4" ([System.Drawing.Color]::FromArgb(255, 215, 215, 215)) ([System.Drawing.Color]::FromArgb(255, 250, 250, 250)) 4
+Create-HammerTexture "gold_hammer_t4" ([System.Drawing.Color]::FromArgb(255, 250, 215, 40)) ([System.Drawing.Color]::FromArgb(255, 255, 245, 150)) 4
+Create-HammerTexture "diamond_hammer_t4" ([System.Drawing.Color]::FromArgb(255, 45, 220, 210)) ([System.Drawing.Color]::FromArgb(255, 170, 250, 250)) 4
+Create-HammerTexture "netherite_hammer_t4" ([System.Drawing.Color]::FromArgb(255, 75, 65, 70)) ([System.Drawing.Color]::FromArgb(255, 120, 110, 115)) 4
 
 Write-Host "Todas las texturas PNG de núcleos y martillos fueron generadas exitosamente."

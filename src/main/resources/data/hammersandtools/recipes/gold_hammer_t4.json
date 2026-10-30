@@ -1,0 +1,23 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    " S "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "C": {
+      "item": "hammersandtools:superior_core"
+    },
+    "S": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "hammersandtools:gold_hammer_t4",
+    "count": 1
+  }
+}

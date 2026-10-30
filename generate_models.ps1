@@ -16,7 +16,17 @@ $items = @(
     "iron_hammer_t2",
     "gold_hammer_t2",
     "diamond_hammer_t2",
-    "netherite_hammer_t2"
+    "netherite_hammer_t2",
+    "stone_hammer_t3",
+    "iron_hammer_t3",
+    "gold_hammer_t3",
+    "diamond_hammer_t3",
+    "netherite_hammer_t3",
+    "stone_hammer_t4",
+    "iron_hammer_t4",
+    "gold_hammer_t4",
+    "diamond_hammer_t4",
+    "netherite_hammer_t4"
 )
 
 foreach ($item in $items) {

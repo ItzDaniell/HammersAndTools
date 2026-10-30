@@ -41,6 +41,20 @@ public class ModCreativeTabs {
                         output.accept(ModItems.GOLD_HAMMER_T2.get());
                         output.accept(ModItems.DIAMOND_HAMMER_T2.get());
                         output.accept(ModItems.NETHERITE_HAMMER_T2.get());
+
+                        // Martillos Nivel 3 (5x5)
+                        output.accept(ModItems.STONE_HAMMER_T3.get());
+                        output.accept(ModItems.IRON_HAMMER_T3.get());
+                        output.accept(ModItems.GOLD_HAMMER_T3.get());
+                        output.accept(ModItems.DIAMOND_HAMMER_T3.get());
+                        output.accept(ModItems.NETHERITE_HAMMER_T3.get());
+
+                        // Martillos Nivel 4 (5x5x5)
+                        output.accept(ModItems.STONE_HAMMER_T4.get());
+                        output.accept(ModItems.IRON_HAMMER_T4.get());
+                        output.accept(ModItems.GOLD_HAMMER_T4.get());
+                        output.accept(ModItems.DIAMOND_HAMMER_T4.get());
+                        output.accept(ModItems.NETHERITE_HAMMER_T4.get());
                     })
                     .build()
             );

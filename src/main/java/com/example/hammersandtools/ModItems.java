@@ -123,4 +123,82 @@ public class ModItems {
                     8.5f, -3.0f, 2,
                     new Item.Properties().durability(10150).fireResistant()
             ));
+
+    // ==========================================
+    // MARTILLOS NIVEL 3 (Área 5x5)
+    // ==========================================
+
+    public static final RegistryObject<Item> STONE_HAMMER_T3 =
+            ITEMS.register("stone_hammer_t3", () -> new HammerItem(
+                    Tiers.STONE,
+                    6.0f, -3.2f, 3,
+                    new Item.Properties().durability(1300)
+            ));
+
+    public static final RegistryObject<Item> IRON_HAMMER_T3 =
+            ITEMS.register("iron_hammer_t3", () -> new HammerItem(
+                    Tiers.IRON,
+                    7.0f, -3.1f, 3,
+                    new Item.Properties().durability(2500)
+            ));
+
+    public static final RegistryObject<Item> GOLD_HAMMER_T3 =
+            ITEMS.register("gold_hammer_t3", () -> new HammerItem(
+                    Tiers.GOLD,
+                    6.0f, -2.8f, 3,
+                    new Item.Properties().durability(320)
+            ));
+
+    public static final RegistryObject<Item> DIAMOND_HAMMER_T3 =
+            ITEMS.register("diamond_hammer_t3", () -> new HammerItem(
+                    Tiers.DIAMOND,
+                    8.0f, -3.0f, 3,
+                    new Item.Properties().durability(15600)
+            ));
+
+    public static final RegistryObject<Item> NETHERITE_HAMMER_T3 =
+            ITEMS.register("netherite_hammer_t3", () -> new HammerItem(
+                    Tiers.NETHERITE,
+                    9.0f, -3.0f, 3,
+                    new Item.Properties().durability(20300).fireResistant()
+            ));
+
+    // ==========================================
+    // MARTILLOS NIVEL 4 (Volumen 5x5x5)
+    // ==========================================
+
+    public static final RegistryObject<Item> STONE_HAMMER_T4 =
+            ITEMS.register("stone_hammer_t4", () -> new HammerItem(
+                    Tiers.STONE,
+                    6.5f, -3.2f, 4,
+                    new Item.Properties().durability(3250)
+            ));
+
+    public static final RegistryObject<Item> IRON_HAMMER_T4 =
+            ITEMS.register("iron_hammer_t4", () -> new HammerItem(
+                    Tiers.IRON,
+                    7.5f, -3.1f, 4,
+                    new Item.Properties().durability(6250)
+            ));
+
+    public static final RegistryObject<Item> GOLD_HAMMER_T4 =
+            ITEMS.register("gold_hammer_t4", () -> new HammerItem(
+                    Tiers.GOLD,
+                    6.5f, -2.8f, 4,
+                    new Item.Properties().durability(800)
+            ));
+
+    public static final RegistryObject<Item> DIAMOND_HAMMER_T4 =
+            ITEMS.register("diamond_hammer_t4", () -> new HammerItem(
+                    Tiers.DIAMOND,
+                    8.5f, -3.0f, 4,
+                    new Item.Properties().durability(39000)
+            ));
+
+    public static final RegistryObject<Item> NETHERITE_HAMMER_T4 =
+            ITEMS.register("netherite_hammer_t4", () -> new HammerItem(
+                    Tiers.NETHERITE,
+                    9.5f, -3.0f, 4,
+                    new Item.Properties().durability(50750).fireResistant()
+            ));
 }
